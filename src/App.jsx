@@ -10,6 +10,7 @@ export default function App() {
   const [dailyLimit, setDailyLimit] = useState(500);
   const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0]);
   const [transactions, setTransactions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedDateStr, setSelectedDateStr] = useState(new Date().toISOString().split('T')[0]);
   const [editingId, setEditingId] = useState(null);
@@ -37,6 +38,7 @@ export default function App() {
       if (txnsRes.data) {
         setTransactions(txnsRes.data);
       }
+      setIsLoading(false);
     }
     loadData();
   }, []);
@@ -151,6 +153,16 @@ export default function App() {
       }
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-slate-100 flex justify-center items-center">
+        <p className="text-slate-400 font-bold uppercase tracking-widest animate-pulse">
+          Unlocking Stash...
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-100 py-10 px-4 transition-colors">
