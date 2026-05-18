@@ -189,15 +189,22 @@ export default function App() {
             <p className={`text-3xl font-black ${accumulatedLeftover < 0 ? 'text-rose-700' : 'text-emerald-700'}`}>
               ₹{accumulatedLeftover}
             </p>
-          </div>
-
-          <div className="p-5 bg-slate-200 border border-slate-300 rounded-xl shadow-sm">
-            <p className="text-xs text-slate-700 uppercase font-bold tracking-wider mb-1">Day's Spend</p>
-            <p className="text-3xl font-black text-slate-800">
-              ₹{selectedSpend}
+            {/* Subtle Lifetime Spend Counter */}
+            <p className={`text-[10px] mt-2 font-bold uppercase tracking-wider ${accumulatedLeftover < 0 ? 'text-rose-600/70' : 'text-emerald-700/70'}`}>
+              Total Spent: ₹{totalLifetimeSpend}
             </p>
           </div>
+
+          <div className="p-5 bg-slate-200 border border-slate-300 rounded-xl shadow-sm flex flex-col justify-between">
+            <div>
+              <p className="text-xs text-slate-700 uppercase font-bold tracking-wider mb-1">Day's Spend</p>
+              <p className="text-3xl font-black text-slate-800">
+                ₹{selectedSpend}
+              </p>
+            </div>
+          </div>
         </div>
+
 
         {/* Input Form */}
         <form onSubmit={logTransaction} className={`space-y-3 p-5 rounded-xl shadow-sm border transition-all ${editingId ? 'bg-amber-50 border-amber-200' : 'bg-white border-slate-100'}`}>
